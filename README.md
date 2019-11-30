@@ -24,7 +24,13 @@ Scrips:
   ```tcl
   write_project_tcl ../Scripts/create_prj.tcl -force
   ```
-  If you used block diagram design, you also have to run:
+  However, the script creates the project in the Script folder, so you need to change the folder address:
+  ```tcl
+  create_project ${_xil_proj_name_} ./${_xil_proj_name_} -part <part_name>
+  to
+  create_project ${_xil_proj_name_} ../Work -part <part_name>
+  ```
+  . If you used block diagram design, you also have to run:
   ```tcl
   wirte_bd_tcl ../Scripts/<your_name/.tcl>
   ```
