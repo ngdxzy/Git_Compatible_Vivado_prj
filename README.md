@@ -1,5 +1,9 @@
 # Git_Compatible_Vivado_prj
 
+# Updates
+  Now, in the main folder, there will be a rsync.sh script, this script will automatically modify the 'create_prj.tcl', copy all '.bit, .tcl, .hwh, .mcs' files to ./Mcs.
+  
+# Old
 This is a shell file to create a git compatible vivado project(Based on 2019.1)
 
 ```shell
