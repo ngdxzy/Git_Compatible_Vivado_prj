@@ -62,7 +62,7 @@ echo "cp ./Work/*.runs/impl*/*.tcl ./Mcs" >> rsync.sh
 echo "cp ./Work/*.runs/impl*/*.bin ./Mcs" >> rsync.sh
 echo "cp ./Work/*.runs/impl*/*.mcs ./Mcs" >> rsync.sh
 echo "find ./Work/*.srcs -name "*.hwh" -type f -exec cp {} ./Mcs \;" >> rsync.sh
-echo "sed 's/\.\/\${_xil_proj_name_}/\.\.\/Work/g' ./Scripts/create_prj.tcl > ./Scripts/temp.tcl" >> rsync.sh
+echo "sed 's/\.\/\${project_name}/\.\.\/Work/g' ./Scripts/create_prj.tcl > ./Scripts/temp.tcl" >> rsync.sh
 echo "cat ./Scripts/temp.tcl > ./Scripts/create_prj.tcl" >> rsync.sh
 echo "rm ./Scripts/temp.tcl" >> rsync.sh
 chmod +x rsync.sh
