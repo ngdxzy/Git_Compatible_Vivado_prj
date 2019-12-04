@@ -1,5 +1,8 @@
 # Git_Compatible_Vivado_prj
 
+# Vivado 2017.4
+  The only difference is the  ./${_xil_proj_name_} becomes  ./${project_name}
+  
 # Updates
   Now, in the main folder, there will be a rsync.sh script, this script will automatically modify the 'create_prj.tcl', copy all '.bit, .tcl, .hwh, .mcs' files to ./Mcs.
   
