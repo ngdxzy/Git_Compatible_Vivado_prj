@@ -69,6 +69,7 @@ chmod +x rsync.sh
 
 echo /Work/* >> .gitignore
 echo *.log >> .gitignore
+echo *.jou >> .gitignore
 git init
 git add .
 git commit -m "Folders created for $prj_name"
