@@ -24,36 +24,28 @@ echo "" >> create_prj.tcl
 echo "set _xil_proj_name_ $prj_name" >> create_prj.tcl
 
 echo "if { [info exists ::user_project_name] } {" >> create_prj.tcl
-echo "  set _xil_proj_name_ $::user_project_name" >> create_prj.tcl
+echo "  set _xil_proj_name_ \$::user_project_name" >> create_prj.tcl
 echo "}" >> create_prj.tcl
 
 echo "variable script_file" >> create_prj.tcl
 echo "set script_file \"create_prj.tcl\"" >> create_prj.tcl
 
 
-echo "if { $::argc > 0 } {" >> create_prj.tcl
-echo "  for {set i 0} {$i < $::argc} {incr i} {" >> create_prj.tcl
-echo "    set option [string trim [lindex $::argv $i]]" >> create_prj.tcl
-echo "    switch -regexp -- $option {" >> create_prj.tcl
-echo "      "--origin_dir"   { incr i; set origin_dir [lindex $::argv $i] }" >> create_prj.tcl
-echo "      "--project_name" { incr i; set _xil_proj_name_ [lindex $::argv $i] }" >> create_prj.tcl
-echo "      "--help"         { print_help }" >> create_prj.tcl
-echo "      default {" >> create_prj.tcl
-echo "        if { [regexp {^-} $option] } {" >> create_prj.tcl
-echo "          puts "ERROR: Unknown option '$option' specified, please type '$script_file -tclargs --help' for usage info.\n"" >> create_prj.tcl
-echo "          return 1" >> create_prj.tcl
-echo "        }" >> create_prj.tcl
-echo "      }" >> create_prj.tcl
-echo "    }" >> create_prj.tcl
-echo "  }" >> create_prj.tcl
-echo "}" >> create_prj.tcl
-echo "" >> create_prj.tcl
 
-echo "set orig_proj_dir \"[file normalize \"$origin_dir/../Work\"]\"" >> create_prj.tcl
+
+echo "set orig_proj_dir \"[file normalize \"\$origin_dir/../Work\"]\"" >> create_prj.tcl
 
 echo "create_project $prj_name ../Work" >> create_prj.tcl
+# Create 'sources_1' fileset (if not found)
+echo "if {[string equal [get_filesets -quiet sources_1] \"\"]} {" >> create_prj.tcl
+echo "  create_fileset -srcset sources_1" >> create_prj.tcl
+echo "}" >> create_prj.tcl
 
+# Set IP repository paths
+echo "set obj [get_filesets sources_1]" >> create_prj.tcl
+echo "set_property IP_REPO_PATHS ./../Src/IPs [current_project]" >> create_prj.tcl
 
+echo "update_ip_catalog" >> create_prj.tcl
 cd ..
 
 echo "#!/bin/bash" >> rsync.sh
