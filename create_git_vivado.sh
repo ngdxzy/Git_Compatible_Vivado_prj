@@ -9,6 +9,8 @@ mkdir ./$prj_name/Scripts
 mkdir ./$prj_name/Src/sources
 mkdir ./$prj_name/Src/constarins
 mkdir ./$prj_name/Src/IPs
+mkdir ./$prj_name/Checkpoints
+
 cd ./$prj_name
 touch .gitignore
 
